@@ -1,7 +1,5 @@
-streamlit
-yfinance
-pandas
-numpy
+backtrader
+yfinance 
+akshare 
+quantstats 
 matplotlib
-polygon-api-client
-torch
