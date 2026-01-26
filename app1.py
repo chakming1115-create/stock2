@@ -16,7 +16,7 @@ def load_cloud_history(user_name):
     """從 Google Sheets 獲取該用戶的歷史記錄"""
     try:
         # 讀取現有數據
-        df = conn.read(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8/edit?usp=sharing"], ttl=0)
+        df = conn.read(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8"], ttl=0)
         user_data = df[df['user_name'] == user_name]
         if not user_data.empty:
             # 取得 history 欄位並轉回 list (假設儲存格式為 "AAPL,TSLA,BTC-USD")
@@ -30,7 +30,7 @@ def save_cloud_history(user_name, history_list):
     """將更新後的歷史記錄存回 Google Sheets"""
     try:
         # 讀取全部數據
-        df = conn.read(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8/edit?usp=sharing"], ttl=0)
+        df = conn.read(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8"], ttl=0)
         history_str = ",".join(history_list)
         
         if user_name in df['user_name'].values:
@@ -42,7 +42,7 @@ def save_cloud_history(user_name, history_list):
             df = pd.concat([df, new_row], ignore_index=True)
         
         # 寫回雲端
-        conn.update(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8/edit?usp=sharing"], data=df)
+        conn.update(spreadsheet=st.secrets["https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8"], data=df)
     except Exception as e:
         st.error(f"雲端存檔失敗: {e}")
 
@@ -156,3 +156,4 @@ if st.button("啟動專業分析"):
 # --- 頁尾 ---
 st.markdown("---")
 st.caption(f"當前雲端用戶: {st.session_state.user_name} | 數據已自動同步至 Google Sheets")
+
