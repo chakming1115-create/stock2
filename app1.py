@@ -11,7 +11,7 @@ st.set_page_config(page_title="AI 專業股票決策系統 2026", layout="wide")
 
 # --- 雲端數據庫設定 ---
 # 這裡直接定義網址，不要放在 st.secrets[] 裡面，除非你在 Secrets 裡面有設定對應的 Key
-SHEET_URL = "https://docs.google.com"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/14LNhM4VyMgTn-OJ4_11vFRMtm1VAlklqfTq-4dvfHt8/edit?usp=sharing"
 
 # 建立連線
 conn = st.connection("gsheets", type=GSheetsConnection)
@@ -319,5 +319,6 @@ if st.button("啟動專業分析"):
 # --- 頁尾 ---
 st.markdown("---")
 st.caption(f"當前雲端用戶: {st.session_state.user_name} | 數據已自動同步至 Google Sheets")
+
 
 
