@@ -1,5 +1,6 @@
-yfinance
 streamlit
+yfinance
 pandas
-matplotlib
 numpy
+matplotlib
+st-gsheets-connection
