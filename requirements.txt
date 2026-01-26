@@ -4,3 +4,4 @@ pandas
 numpy
 matplotlib
 polygon-api-client
+torch==2.2.0
